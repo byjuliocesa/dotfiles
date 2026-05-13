@@ -1,0 +1,5 @@
+# Base tools
+git
+github-cli
+nodejs
+npm
