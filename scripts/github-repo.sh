@@ -34,7 +34,11 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   git remote add origin "git@github.com:$owner/$REPO_NAME.git"
 fi
 
+if ! ssh-keygen -F github.com -f "$HOME/.ssh/known_hosts" >/dev/null 2>&1; then
+  ssh-keyscan github.com >>"$HOME/.ssh/known_hosts"
+  chmod 644 "$HOME/.ssh/known_hosts"
+fi
+
 git branch -M main
 git c "initial dotfiles bootstrap" || true
 git push -u origin main
-

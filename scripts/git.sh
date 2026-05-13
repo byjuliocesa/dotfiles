@@ -36,6 +36,26 @@ ensure_ssh_key() {
   fi
 }
 
+ensure_github_known_host() {
+  local known_hosts="$HOME/.ssh/known_hosts"
+
+  mkdir -p "$HOME/.ssh"
+  chmod 700 "$HOME/.ssh"
+
+  if ssh-keygen -F github.com -f "$known_hosts" >/dev/null 2>&1; then
+    log "github.com already exists in known_hosts"
+    return 0
+  fi
+
+  if command_exists ssh-keyscan; then
+    ssh-keyscan github.com >>"$known_hosts"
+    chmod 644 "$known_hosts"
+    log "Added github.com to known_hosts"
+  else
+    warn "Skipping github.com known_hosts setup because ssh-keyscan is not installed"
+  fi
+}
+
 add_ssh_key_to_github() {
   command_exists gh || {
     warn "Skipping GitHub SSH key upload because gh is not installed"
@@ -61,5 +81,5 @@ add_ssh_key_to_github() {
 
 configure_git_aliases
 ensure_ssh_key
+ensure_github_known_host
 add_ssh_key_to_github
-
