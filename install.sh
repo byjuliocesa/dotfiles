@@ -19,6 +19,7 @@ main() {
   esac
 
   "$ROOT_DIR/scripts/git.sh"
+  "$ROOT_DIR/scripts/codex.sh"
   "$ROOT_DIR/scripts/skills.sh"
   "$ROOT_DIR/scripts/wallpapers.sh"
 

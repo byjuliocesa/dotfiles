@@ -31,6 +31,7 @@ git commit -m "mensagem"
 - `packages/arch.txt`: pacotes instalados via `pacman`.
 - `packages/aur.txt`: pacotes instalados via `yay` ou `paru`.
 - `packages/npm-global.txt`: pacotes globais instalados via `npm`.
+- `codex/`: regras e ajustes locais do Codex restaurados pelo bootstrap.
 - `assets/wallpapers/`: wallpapers versionados para restaurar em uma máquina nova.
 - `skills/`: skills locais do Codex que devem ser restauradas pelo bootstrap.
 - `scripts/`: funções e passos separados do bootstrap.
