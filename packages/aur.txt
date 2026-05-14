@@ -1,3 +1,4 @@
 # Editor
 zed
+visual-studio-code-bin
 
