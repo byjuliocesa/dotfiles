@@ -32,13 +32,14 @@ git commit -m "mensagem"
 - `packages/aur.txt`: pacotes instalados via `yay` ou `paru`.
 - `packages/npm-global.txt`: pacotes globais instalados via `npm`.
 - `codex/`: regras e ajustes locais do Codex restaurados pelo bootstrap.
+- `shell/`: aliases e ajustes comuns para shells interativos.
 - `assets/wallpapers/`: wallpapers versionados para restaurar em uma máquina nova.
 - `skills/`: skills locais do Codex que devem ser restauradas pelo bootstrap.
 - `scripts/`: funções e passos separados do bootstrap.
 
 ## Próximos itens bons para adicionar
 
-- Configs do shell: `.zshrc`, `.bashrc`, aliases, prompt.
+- Configs do shell: prompt e integrações maiores.
 - Configs em `.config`: Hyprland, Caelestia, Zed, terminal, Git.
 - Chaves e segredos: nunca versionar diretamente; documentar como restaurar.
 - Instalação por distro: criar scripts separados para `arch`, `fedora`, `ubuntu`, etc.
