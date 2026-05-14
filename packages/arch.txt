@@ -1,5 +1,9 @@
 # Base tools
+bun
 git
 github-cli
 nodejs
 npm
+obsidian
+pnpm
+steam
