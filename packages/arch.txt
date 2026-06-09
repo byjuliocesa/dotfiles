@@ -1,9 +1,11 @@
 # Base tools
 bun
+discord
 git
 github-cli
 nodejs
 npm
+obs-studio
 obsidian
 pnpm
 steam
