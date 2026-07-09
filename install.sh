@@ -11,7 +11,9 @@ main() {
 
   case "$(detect_distro_family)" in
     arch)
+      "$ROOT_DIR/scripts/yay.sh"
       "$ROOT_DIR/scripts/arch.sh"
+      "$ROOT_DIR/scripts/caelestia.sh"
       ;;
     *)
       die "Unsupported distro for now. Add a new script under scripts/ for this distro."

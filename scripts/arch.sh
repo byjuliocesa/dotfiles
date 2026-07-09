@@ -26,7 +26,7 @@ install_pacman_packages() {
   fi
 
   log "Installing pacman packages: ${missing[*]}"
-  sudo pacman -S --needed "${missing[@]}"
+  run_sudo pacman -S --needed --noconfirm "${missing[@]}"
 }
 
 aur_helper() {
@@ -65,7 +65,7 @@ install_aur_packages() {
   fi
 
   log "Installing AUR/helper packages with $helper: ${missing[*]}"
-  "$helper" -S --needed "${missing[@]}"
+  "$helper" -S --needed --noconfirm "${missing[@]}"
 }
 
 install_npm_globals() {
@@ -90,11 +90,10 @@ install_npm_globals() {
     fi
 
     log "Installing npm global package: $package"
-    sudo npm install -g "$package"
+    run_sudo npm install -g "$package"
   done
 }
 
 install_pacman_packages
 install_aur_packages
 install_npm_globals
-

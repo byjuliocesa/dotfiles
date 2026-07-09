@@ -17,6 +17,14 @@ command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
+run_sudo() {
+  if [[ -n "${DOTFILES_SUDO_PASSWORD:-}" ]]; then
+    printf '%s\n' "$DOTFILES_SUDO_PASSWORD" | /usr/bin/sudo -S -p '' "$@"
+  else
+    /usr/bin/sudo "$@"
+  fi
+}
+
 detect_distro_family() {
   if [[ -r /etc/os-release ]]; then
     # shellcheck disable=SC1091
@@ -34,4 +42,3 @@ detect_distro_family() {
 repo_root() {
   cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd
 }
-

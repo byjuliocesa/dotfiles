@@ -37,9 +37,17 @@ git commit -m "mensagem"
 - `skills/`: skills locais do Codex que devem ser restauradas pelo bootstrap.
 - `scripts/`: funções e passos separados do bootstrap.
 
+## Hyprland + Caelestia
+
+O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
+
+- Pacotes base: `packages/arch.txt` e `packages/aur.txt`
+- Overrides pessoais: `config/caelestia/hypr-vars.lua` e `config/caelestia/hypr-user.lua`
+- Após instalar, escolha a sessão **Hyprland** no gerenciador de login (plasmalogin/SDDM)
+
 ## Próximos itens bons para adicionar
 
 - Configs do shell: prompt e integrações maiores.
-- Configs em `.config`: Hyprland, Caelestia, Zed, terminal, Git.
+- Mais overrides em `config/caelestia/` e configs de Git.
 - Chaves e segredos: nunca versionar diretamente; documentar como restaurar.
 - Instalação por distro: criar scripts separados para `arch`, `fedora`, `ubuntu`, etc.

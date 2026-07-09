@@ -9,3 +9,20 @@ obs-studio
 obsidian
 pnpm
 steam
+
+# Hyprland / Caelestia base
+hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+fish
+ttf-jetbrains-mono-nerd
+networkmanager
+pipewire
+pipewire-pulse
+pipewire-audio
+wireplumber
+wl-clipboard
+grim
+slurp
+polkit-gnome
+gnome-keyring
