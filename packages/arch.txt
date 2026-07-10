@@ -5,6 +5,7 @@ git
 github-cli
 nodejs
 npm
+mpv
 obs-studio
 obsidian
 pnpm
