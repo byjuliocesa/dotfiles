@@ -1,6 +1,7 @@
 # Base tools
 bun
 discord
+go
 neovim
 ripgrep
 fd

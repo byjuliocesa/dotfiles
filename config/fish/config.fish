@@ -9,6 +9,12 @@ if status is-interactive
     # Better ls
     command -v eza &> /dev/null && alias ls='eza --icons --group-directories-first -1'
 
+    # Go
+    if command -v go &> /dev/null
+        set -gx GOPATH (go env GOPATH)
+        fish_add_path "$GOPATH/bin"
+    end
+
     # Abbrs
     abbr lg 'lazygit'
     abbr gd 'git diff'

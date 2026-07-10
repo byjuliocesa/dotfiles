@@ -32,7 +32,7 @@ git commit -m "mensagem"
 - `packages/aur.txt`: pacotes instalados via `yay` ou `paru`.
 - `packages/npm-global.txt`: pacotes globais instalados via `npm`.
 - `codex/`: regras e ajustes locais do Codex restaurados pelo bootstrap.
-- `shell/`: aliases e ajustes comuns para shells interativos.
+- `shell/`: aliases, variáveis do Go e ajustes comuns para shells interativos.
 - `config/fish/`: config do Fish (starship, direnv, zoxide, eza e abbrs).
 - `config/nvim/`: config do LazyVim (starter oficial).
 - `config/tmux/`: config do tmux (splits, vi mode, mouse e true color).
