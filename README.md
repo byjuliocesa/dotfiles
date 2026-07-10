@@ -35,6 +35,7 @@ git commit -m "mensagem"
 - `shell/`: aliases e ajustes comuns para shells interativos.
 - `config/fish/`: config do Fish (starship, direnv, zoxide, eza e abbrs).
 - `config/nvim/`: config do LazyVim (starter oficial).
+- `config/tmux/`: config do tmux (splits, vi mode, mouse e true color).
 - `assets/wallpapers/`: wallpapers versionados para restaurar em uma máquina nova.
 - `skills/`: skills locais do Codex que devem ser restauradas pelo bootstrap.
 - `scripts/`: funções e passos separados do bootstrap.

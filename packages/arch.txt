@@ -23,6 +23,7 @@ starship
 direnv
 zoxide
 eza
+tmux
 ttf-jetbrains-mono-nerd
 networkmanager
 pipewire
