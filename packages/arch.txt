@@ -16,6 +16,10 @@ hyprland
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 fish
+starship
+direnv
+zoxide
+eza
 ttf-jetbrains-mono-nerd
 networkmanager
 pipewire

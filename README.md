@@ -33,6 +33,7 @@ git commit -m "mensagem"
 - `packages/npm-global.txt`: pacotes globais instalados via `npm`.
 - `codex/`: regras e ajustes locais do Codex restaurados pelo bootstrap.
 - `shell/`: aliases e ajustes comuns para shells interativos.
+- `config/fish/`: config do Fish (starship, direnv, zoxide, eza e abbrs).
 - `assets/wallpapers/`: wallpapers versionados para restaurar em uma máquina nova.
 - `skills/`: skills locais do Codex que devem ser restauradas pelo bootstrap.
 - `scripts/`: funções e passos separados do bootstrap.
