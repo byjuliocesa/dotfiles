@@ -1,6 +1,9 @@
 # Base tools
 bun
 discord
+neovim
+ripgrep
+fd
 git
 github-cli
 nodejs
