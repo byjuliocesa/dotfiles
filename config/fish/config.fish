@@ -9,6 +9,9 @@ if status is-interactive
     # Better ls
     command -v eza &> /dev/null && alias ls='eza --icons --group-directories-first -1'
 
+    # OpenCode
+    fish_add_path "$HOME/.opencode/bin"
+
     # Go
     if command -v go &> /dev/null
         set -gx GOPATH (go env GOPATH)

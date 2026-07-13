@@ -21,6 +21,7 @@ main() {
   esac
 
   "$ROOT_DIR/scripts/git.sh"
+  "$ROOT_DIR/scripts/opencode.sh"
   "$ROOT_DIR/scripts/shell.sh"
   "$ROOT_DIR/scripts/lazyvim.sh"
   "$ROOT_DIR/scripts/codex.sh"
