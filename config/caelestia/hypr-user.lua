@@ -21,5 +21,6 @@ hl.config({
     },
 })
 
+-- Serviços ao iniciar o Hyprland
 hl.on("hyprland.start", function()
 end)
