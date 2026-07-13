@@ -20,3 +20,6 @@ hl.config({
         kb_variant = "abnt2",
     },
 })
+
+hl.on("hyprland.start", function()
+end)
