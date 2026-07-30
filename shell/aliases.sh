@@ -1,4 +1,5 @@
 alias codex='codex --ask-for-approval never'
+alias claude='claude --dangerously-skip-permissions'
 
 export PATH="$HOME/.opencode/bin:$PATH"
 
