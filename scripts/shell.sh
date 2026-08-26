@@ -27,6 +27,15 @@ install_aliases() {
   log "Installed shell aliases"
 }
 
+install_foot_config() {
+  local src="$ROOT_DIR/config/foot/foot.ini"
+  local dst="${XDG_CONFIG_HOME:-$HOME/.config}/foot/foot.ini"
+  [[ -f "$src" ]] || return 0
+  mkdir -p "$(dirname "$dst")"
+  cp "$src" "$dst"
+  log "Installed foot config"
+}
+
 install_fish_config() {
   [[ -f "$SOURCE_FISH_CONFIG" ]] || return 0
 
@@ -58,6 +67,7 @@ ensure_shell_sources_aliases() {
 
 install_aliases
 install_fish_config
+install_foot_config
 install_tmux_config
 ensure_shell_sources_aliases "$HOME/.bashrc"
 ensure_shell_sources_aliases "$HOME/.zshrc"
