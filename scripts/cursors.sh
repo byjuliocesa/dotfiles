@@ -35,7 +35,7 @@ install_dynamic_cursors() {
     warn "Skipping dynamic-cursors: could not read Hyprland version (is Hyprland running?)"
     return 0
   fi
-  plugin_commit="$(grep "\"$hypr_commit\"" "$PLUGIN_SRC/hyprpm.toml" | grep -oP '"\K[0-9a-f]{40}(?="\],)' || true)"
+  plugin_commit="$(git -C "$PLUGIN_SRC" show origin/main:hyprpm.toml | grep "\"$hypr_commit\"" | grep -oP '"\K[0-9a-f]{40}(?="\],)' || true)"
   if [[ -z "$plugin_commit" ]]; then
     plugin_commit="origin/main"
     warn "No pinned dynamic-cursors commit for Hyprland $hypr_commit; building main (may fail)"
