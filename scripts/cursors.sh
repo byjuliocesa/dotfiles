@@ -30,7 +30,11 @@ install_dynamic_cursors() {
   fi
 
   local hypr_commit plugin_commit
-  hypr_commit="$(hyprctl version | grep -oP 'commit \K[0-9a-f]+' | head -1)"
+  hypr_commit="$(hyprctl version 2>/dev/null | grep -oPm1 'commit \K[0-9a-f]+' || true)"
+  if [[ -z "$hypr_commit" ]]; then
+    warn "Skipping dynamic-cursors: could not read Hyprland version (is Hyprland running?)"
+    return 0
+  fi
   plugin_commit="$(grep "\"$hypr_commit\"" "$PLUGIN_SRC/hyprpm.toml" | grep -oP '"\K[0-9a-f]{40}(?="\],)' || true)"
   if [[ -z "$plugin_commit" ]]; then
     plugin_commit="origin/main"
@@ -40,9 +44,16 @@ install_dynamic_cursors() {
   git -C "$PLUGIN_SRC" checkout -q "$plugin_commit"
   make -C "$PLUGIN_SRC" clean all -j"$(nproc)" >/dev/null
 
+  # Nunca sobrescrever o .so no lugar: o Hyprland mantém o arquivo mapeado em
+  # memória e um cp por cima derruba o compositor. mv troca o inode atomicamente.
   mkdir -p "$PLUGIN_DIR"
-  cp "$PLUGIN_SRC/out/dynamic-cursors.so" "$PLUGIN_DIR/"
-  log "Installed dynamic-cursors plugin to $PLUGIN_DIR (commit ${plugin_commit:0:7})"
+  if cmp -s "$PLUGIN_SRC/out/dynamic-cursors.so" "$PLUGIN_DIR/dynamic-cursors.so"; then
+    log "dynamic-cursors plugin already up to date"
+    return 0
+  fi
+  cp "$PLUGIN_SRC/out/dynamic-cursors.so" "$PLUGIN_DIR/dynamic-cursors.so.new"
+  mv -f "$PLUGIN_DIR/dynamic-cursors.so.new" "$PLUGIN_DIR/dynamic-cursors.so"
+  log "Installed dynamic-cursors plugin to $PLUGIN_DIR (commit ${plugin_commit:0:7}); takes effect on next Hyprland start"
 }
 
 install_miku_cursor() {
