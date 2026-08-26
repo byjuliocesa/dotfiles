@@ -47,6 +47,7 @@ O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
 - Pacotes base: `packages/arch.txt` e `packages/aur.txt`
 - Overrides pessoais: `config/caelestia/hypr-vars.lua` e `config/caelestia/hypr-user.lua`
 - Após instalar, escolha a sessão **Hyprland** no gerenciador de login (plasmalogin/SDDM)
+- Cursor: `scripts/cursors.sh` compila o plugin [hypr-dynamic-cursors](https://github.com/VirtCode/hypr-dynamic-cursors) (tilt + shake to find) para a versão exata do Hyprland e instala o tema [Hatsune Miku](https://github.com/supermariofps/hatsune-miku-windows-linux-cursors). Rode de novo após atualizar o Hyprland.
 
 ## Próximos itens bons para adicionar
 

@@ -14,6 +14,7 @@ main() {
       "$ROOT_DIR/scripts/yay.sh"
       "$ROOT_DIR/scripts/arch.sh"
       "$ROOT_DIR/scripts/caelestia.sh"
+      "$ROOT_DIR/scripts/cursors.sh"
       ;;
     *)
       die "Unsupported distro for now. Add a new script under scripts/ for this distro."

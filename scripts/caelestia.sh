@@ -11,15 +11,17 @@ HYPR_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/hypr"
 
 install_user_overrides() {
   local src="$ROOT_DIR/config/caelestia"
-  local hypr_vars="$CAELESTIA_CONFIG_DIR/hypr-vars.lua"
 
   [[ -d "$src" ]] || return 0
   mkdir -p "$CAELESTIA_CONFIG_DIR"
 
-  if [[ -f "$src/hypr-vars.lua" && ! -f "$hypr_vars" ]]; then
-    cp "$src/hypr-vars.lua" "$hypr_vars"
-    log "Installed Caelestia user overrides: hypr-vars.lua"
-  fi
+  local f
+  for f in hypr-vars.lua hypr-user.lua; do
+    if [[ -f "$src/$f" && ! -f "$CAELESTIA_CONFIG_DIR/$f" ]]; then
+      cp "$src/$f" "$CAELESTIA_CONFIG_DIR/$f"
+      log "Installed Caelestia user overrides: $f"
+    fi
+  done
 }
 
 caelestia_installed() {
