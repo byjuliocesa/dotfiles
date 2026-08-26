@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Cursor: plugin hypr-dynamic-cursors (tilt + shake to find) e tema Hatsune Miku.
+# Fonte dos temas de cursor: GitHub (procurar por "cursor theme"; o atual é o
+# repositório em CURSOR_REPO abaixo).
 # O plugin é compilado manualmente porque hyprpm exige sudo e o commit precisa
 # bater com a versão exata do Hyprland instalada (pinos em hyprpm.toml).
 set -euo pipefail

@@ -28,6 +28,7 @@ main() {
   "$ROOT_DIR/scripts/codex.sh"
   "$ROOT_DIR/scripts/skills.sh"
   "$ROOT_DIR/scripts/wallpapers.sh"
+  "$ROOT_DIR/scripts/fonts.sh"
 
   log "Bootstrap finished"
 }

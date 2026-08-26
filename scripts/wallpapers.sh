@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Wallpapers: copia assets/wallpapers/ para ~/Imagens/Wallpapers.
+# Fonte dos arquivos: https://wallhaven.cc (os "wallhaven-xxxxxx.jpg" vêm de lá).
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

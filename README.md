@@ -49,6 +49,17 @@ O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
 - Após instalar, escolha a sessão **Hyprland** no gerenciador de login (plasmalogin/SDDM)
 - Cursor: `scripts/cursors.sh` compila o plugin [hypr-dynamic-cursors](https://github.com/VirtCode/hypr-dynamic-cursors) (tilt + shake to find) para a versão exata do Hyprland e instala o tema [Hatsune Miku](https://github.com/supermariofps/hatsune-miku-windows-linux-cursors). Rode de novo após atualizar o Hyprland.
 
+## De onde vêm os assets
+
+Referência para trocar ou baixar novos:
+
+| Tipo | Onde pego | Onde fica no repo |
+|---|---|---|
+| Wallpapers | https://wallhaven.cc | `assets/wallpapers/` (`scripts/wallpapers.sh`) |
+| Fontes de código | https://www.programmingfonts.org (atual: [CommitMono](https://commitmono.com)) | `assets/fonts/<Familia>/` (`scripts/fonts.sh`) |
+| Cursor | GitHub (atual: [hatsune-miku-windows-linux-cursors](https://github.com/supermariofps/hatsune-miku-windows-linux-cursors)) | `scripts/cursors.sh` |
+| Plugin de cursor | [hypr-dynamic-cursors](https://github.com/VirtCode/hypr-dynamic-cursors) | `scripts/cursors.sh` |
+
 ## Próximos itens bons para adicionar
 
 - Configs do shell: prompt e integrações maiores.
