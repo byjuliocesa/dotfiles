@@ -1,5 +1,6 @@
 # Base tools
 bun
+chafa
 discord
 go
 neovim
@@ -7,6 +8,7 @@ ripgrep
 fd
 git
 github-cli
+gwenview
 nodejs
 npm
 mpv
