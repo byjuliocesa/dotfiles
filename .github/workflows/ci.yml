@@ -9,11 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: shellcheck -x install.sh scripts/*.sh bin/dot ci/*.sh
+      - run: shellcheck -x install.sh scripts/*.sh
 
   arch:
     runs-on: ubuntu-latest
     container: archlinux:latest
     steps:
       - uses: actions/checkout@v4
-      - run: ci/arch-test.sh
+      - name: Prepare pacman
+        run: |
+          # steam vem do multilib, que a imagem do container não habilita.
+          grep -q '^\[multilib\]' /etc/pacman.conf ||
+            printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >>/etc/pacman.conf
+          pacman -Syu --noconfirm --needed neovim fish >/dev/null
+      - run: nvim -l ci/test.lua
