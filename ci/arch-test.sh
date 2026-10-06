@@ -5,7 +5,9 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+# steam vem do multilib, que a imagem do container não habilita.
+grep -q '^\[multilib\]' /etc/pacman.conf ||
+  printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >>/etc/pacman.conf
 pacman -Syu --noconfirm --needed fish >/dev/null
 
 echo "== packages/arch.txt exists in the repos"
