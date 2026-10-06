@@ -1,0 +1,12 @@
+# Cores por nome usam a paleta do terminal, que o Caelestia já pinta com o wallpaper.
+gui:
+  nerdFontsVersion: "3"
+  showRandomTip: false
+  theme:
+    activeBorderColor: [blue, bold]
+    inactiveBorderColor: [default]
+    selectedLineBgColor: [reverse]
+git:
+  autoFetch: true
+os:
+  editPreset: nvim

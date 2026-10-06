@@ -14,4 +14,11 @@ config/starship.toml               ~/.config/starship.toml
 config/caelestia/hypr-vars.lua     ~/.config/caelestia/hypr-vars.lua
 config/caelestia/hypr-user.lua     ~/.config/caelestia/hypr-user.lua
 config/caelestia/shell.json        ~/.config/caelestia/shell.json
+config/caelestia/cli.json          ~/.config/caelestia/cli.json
+config/caelestia/templates         ~/.config/caelestia/templates
+config/lazygit/config.yml          ~/.config/lazygit/config.yml
+config/yazi/yazi.toml              ~/.config/yazi/yazi.toml
+config/fish/functions/y.fish       ~/.config/fish/functions/y.fish
+config/systemd/user/dot-doctor.service ~/.config/systemd/user/dot-doctor.service
+config/systemd/user/dot-doctor.timer   ~/.config/systemd/user/dot-doctor.timer
 bin/dot                            ~/.local/bin/dot

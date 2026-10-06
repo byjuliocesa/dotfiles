@@ -10,11 +10,14 @@ usage() {
   cat <<USAGE
 Usage: dot <command>
 
-  sync           pull the repo and relink every config
-  save "msg"     commit everything and push
-  edit <name>    open the config whose path matches <name>
-  doctor [links] report broken links and missing packages
-  secret ...     init | add <file> | restore
+  sync              pull the repo and relink every config
+  save "msg"        commit everything and push
+  edit <name>       open the config whose path matches <name>
+  doctor [links]    report broken links and package drift
+  pkg add <pkg>     install a package and record it in packages/
+  pkg drift         list installed packages missing from packages/
+  pkg ignore <pkg>  stop reporting a package as drift
+  secret ...        init | add <file> | restore
 USAGE
 }
 
@@ -58,6 +61,49 @@ cmd_edit() {
   "${EDITOR:-nvim}" "$DOTFILES/$pick"
 }
 
+listed_packages() {
+  grep -hEv '^\s*(#|$)' "$DOTFILES"/packages/{arch,aur,ignore}.txt | sort -u
+}
+
+drift_packages() {
+  comm -23 <(pacman -Qqe | sort) <(listed_packages)
+}
+
+cmd_pkg_add() {
+  [[ $# -gt 0 ]] || die "Usage: dot pkg add <package>..."
+
+  local package list helper
+  for package in "$@"; do
+    if pacman -Si "$package" >/dev/null 2>&1; then
+      run_sudo pacman -S --needed --noconfirm "$package"
+      list=arch
+    else
+      helper="$(command -v yay || command -v paru)" || die "$package is not in pacman and no AUR helper is installed"
+      "$helper" -S --needed "$package"
+      list=aur
+    fi
+
+    sed -i "/^${package}\$/d" "$DOTFILES/packages/ignore.txt"
+    if ! listed_packages | grep -qx -- "$package"; then
+      printf '%s\n' "$package" >>"$DOTFILES/packages/$list.txt"
+      log "Recorded $package in packages/$list.txt"
+    fi
+  done
+}
+
+cmd_pkg() {
+  case "${1:-}" in
+    add) shift; cmd_pkg_add "$@" ;;
+    drift) drift_packages ;;
+    ignore)
+      shift
+      [[ $# -gt 0 ]] || die "Usage: dot pkg ignore <package>..."
+      printf '%s\n' "$@" >>"$DOTFILES/packages/ignore.txt"
+      ;;
+    *) die "Usage: dot pkg add | drift | ignore" ;;
+  esac
+}
+
 DOCTOR_ISSUES=0
 
 check_link() {
@@ -85,6 +131,13 @@ check_packages() {
     warn "package not installed: $package"
     DOCTOR_ISSUES=$((DOCTOR_ISSUES + 1))
   done < <(grep -hEv '^\s*(#|$)' "$DOTFILES/packages/arch.txt" "$DOTFILES/packages/aur.txt")
+
+  local drift
+  drift="$(drift_packages | wc -l)"
+  if ((drift > 0)); then
+    warn "$drift package(s) installed but not in packages/ (run: dot pkg drift)"
+    DOCTOR_ISSUES=$((DOCTOR_ISSUES + 1))
+  fi
 }
 
 cmd_doctor() {
@@ -107,6 +160,7 @@ case "${1:-}" in
   save) shift; cmd_save "$@" ;;
   edit) shift; cmd_edit "$@" ;;
   doctor) shift; cmd_doctor "$@" ;;
+  pkg) shift; cmd_pkg "$@" ;;
   secret) shift; "$DOTFILES/scripts/secrets.sh" "$@" ;;
   -h | --help | help | "") usage ;;
   *) usage; exit 1 ;;

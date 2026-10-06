@@ -9,6 +9,7 @@ fd
 fzf
 bat
 lazygit
+yazi
 age
 git
 github-cli

@@ -1,0 +1,6 @@
+[Unit]
+Description=Check that the dotfiles are still in place
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '%h/.local/bin/dot doctor >/dev/null 2>&1 || notify-send -a dotfiles "dotfiles" "Algo saiu do lugar. Rode: dot doctor"'

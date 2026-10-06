@@ -35,6 +35,7 @@ main() {
   "$ROOT_DIR/scripts/lazyvim.sh"
   "$ROOT_DIR/scripts/wallpapers.sh"
   "$ROOT_DIR/scripts/fonts.sh"
+  "$ROOT_DIR/scripts/systemd.sh"
 
   if [[ "${1:-}" == "--ai" ]]; then
     "$ROOT_DIR/scripts/ai.sh"

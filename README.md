@@ -21,8 +21,13 @@ O script atual foca em sistemas compatíveis com Arch Linux, como CachyOS.
 | `dot sync` | puxa o repo e refaz os links |
 | `dot save "mensagem"` | commita tudo e faz push |
 | `dot edit fish` | abre no editor a config que casa com o nome |
-| `dot doctor` | lista links quebrados ou faltando e pacotes não instalados |
+| `dot doctor` | lista links quebrados ou faltando e pacotes fora das listas |
+| `dot pkg add <pacote>` | instala (pacman ou AUR) e já anota em `packages/` |
+| `dot pkg drift` | mostra o que está instalado mas não está em `packages/` |
+| `dot pkg ignore <pacote>` | para de cobrar um pacote (vai para `packages/ignore.txt`) |
 | `dot secret add <arquivo>` | guarda um arquivo cifrado no repo (veja `secrets/README.md`) |
+
+Um timer do systemd roda `dot doctor` uma vez por dia e manda uma notificação se algo saiu do lugar.
 
 Para versionar uma config nova: mova o arquivo para `config/`, adicione uma linha em `links.txt` e rode `dot sync`.
 
@@ -32,7 +37,7 @@ Para versionar uma config nova: mova o arquivo para `config/`, adicione uma linh
 - `links.txt`: o que vai para onde em `~`.
 - `bin/dot`: o comando do dia a dia, ligado em `~/.local/bin/dot`.
 - `packages/`: listas de pacotes para `pacman`, AUR e `npm`.
-- `config/`: fish (com `conf.d/` por assunto e plugins via fisher), foot, tmux, nvim (LazyVim), git, starship e Caelestia.
+- `config/`: fish (com `conf.d/` por assunto e plugins via fisher), foot, tmux, nvim (LazyVim), git, starship, lazygit, yazi, Caelestia e o timer do systemd.
 - `shell/`: aliases para bash e zsh.
 - `secrets/`: arquivos cifrados com `age`, restaurados pelo install.
 - `ai/`: pacotes, regras e skills de IA, com o próprio `links.txt`. Só instala com `--ai`.
@@ -46,6 +51,7 @@ O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
 
 - Pacotes base: `packages/arch.txt` e `packages/aur.txt`
 - Overrides pessoais: `config/caelestia/hypr-vars.lua`, `hypr-user.lua` e `shell.json`
+- Cores: o Caelestia gera a paleta do wallpaper e preenche `config/caelestia/templates/`. O nvim troca de cor na hora. O tmux recarrega pelo `postHook` em `cli.json`. Starship, lazygit e yazi usam as cores do terminal, que o Caelestia já pinta.
 - Layout de monitores fica fora do repo, porque muda por máquina. `hypr-user.lua` só carrega se existir.
 - Após instalar, escolha a sessão **Hyprland** no gerenciador de login (plasmalogin/SDDM)
 - Cursor: `scripts/cursors.sh` compila o plugin [hypr-dynamic-cursors](https://github.com/VirtCode/hypr-dynamic-cursors) (tilt + shake to find) para a versão exata do Hyprland e instala o tema [Hatsune Miku](https://github.com/supermariofps/hatsune-miku-windows-linux-cursors). Rode de novo após atualizar o Hyprland.
