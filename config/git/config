@@ -1,0 +1,17 @@
+[user]
+	name = Julio0Cesar
+	email = 102155736+byjuliocesa@users.noreply.github.com
+[init]
+	defaultBranch = main
+[alias]
+	c = "!f() { git add . && git commit -m \"$*\"; }; f"
+	st = status -sb
+	lg = log --oneline --graph --decorate -20
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictstyle = zdiff3

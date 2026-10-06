@@ -1,0 +1,33 @@
+{
+    "appearance": {
+        "transparency": {
+            "enabled": false
+        }
+    },
+    "bar": {
+        "activeWindow": {
+            "inverted": false
+        }
+    },
+    "general": {
+        "idle": {
+            "inhibitWhenAudio": true,
+            "lockBeforeSleep": true,
+            "timeouts": [
+            ]
+        }
+    },
+    "launcher": {
+        "favouriteApps": [
+        ],
+        "hiddenApps": [
+        ],
+        "useFuzzy": {
+            "wallpapers": false
+        }
+    },
+    "lock": {
+        "enableFprint": true,
+        "maxFprintTries": 5
+    }
+}

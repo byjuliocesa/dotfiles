@@ -1,2 +1,1 @@
-@openai/codex
-
+# Um pacote por linha, instalado com npm install -g

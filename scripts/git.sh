@@ -6,11 +6,17 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=lib.sh
 source "$ROOT_DIR/scripts/lib.sh"
 
-configure_git_aliases() {
-  command_exists git || die "git is required"
+# A config versionada fica em ~/.config/git/config. Um ~/.gitconfig real
+# teria prioridade e receberia as escritas do `git config --global`.
+retire_legacy_gitconfig() {
+  local legacy="$HOME/.gitconfig"
 
-  git config --global alias.c '!f() { git add . && git commit -m "$*"; }; f'
-  log "Configured git alias: git c \"message\""
+  [[ -f "$legacy" && ! -L "$legacy" ]] || return 0
+
+  local backup
+  backup="$legacy.bak.$(date +%Y%m%d%H%M%S)"
+  mv "$legacy" "$backup"
+  log "Moved $legacy to $backup; git now reads ~/.config/git/config"
 }
 
 ensure_ssh_key() {
@@ -79,7 +85,7 @@ add_ssh_key_to_github() {
   log "Added SSH key to GitHub: $title"
 }
 
-configure_git_aliases
+retire_legacy_gitconfig
 ensure_ssh_key
 ensure_github_known_host
 add_ssh_key_to_github

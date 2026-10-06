@@ -1,0 +1,3 @@
+# <arquivo no repo>                <destino>
+ai/codex/rules/default.rules       ~/.codex/rules/default.rules
+ai/skills/dotfiles-sync            ~/.codex/skills/dotfiles-sync

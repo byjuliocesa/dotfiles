@@ -1,0 +1,17 @@
+# <arquivo no repo>                <destino>
+shell/aliases.sh                   ~/.config/shell/aliases.sh
+config/fish/config.fish            ~/.config/fish/config.fish
+config/fish/conf.d/exports.fish    ~/.config/fish/conf.d/exports.fish
+config/fish/conf.d/aliases.fish    ~/.config/fish/conf.d/aliases.fish
+config/fish/conf.d/abbr.fish       ~/.config/fish/conf.d/abbr.fish
+config/fish/fish_plugins           ~/.config/fish/fish_plugins
+config/foot/foot.ini               ~/.config/foot/foot.ini
+config/tmux/tmux.conf              ~/.config/tmux/tmux.conf
+config/nvim                        ~/.config/nvim
+config/git/config                  ~/.config/git/config
+config/git/ignore                  ~/.config/git/ignore
+config/starship.toml               ~/.config/starship.toml
+config/caelestia/hypr-vars.lua     ~/.config/caelestia/hypr-vars.lua
+config/caelestia/hypr-user.lua     ~/.config/caelestia/hypr-user.lua
+config/caelestia/shell.json        ~/.config/caelestia/shell.json
+bin/dot                            ~/.local/bin/dot

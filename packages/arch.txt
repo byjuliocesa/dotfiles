@@ -6,6 +6,10 @@ go
 neovim
 ripgrep
 fd
+fzf
+bat
+lazygit
+age
 git
 github-cli
 gwenview
@@ -22,6 +26,7 @@ hyprland
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 fish
+fisher
 starship
 direnv
 zoxide

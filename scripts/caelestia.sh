@@ -6,23 +6,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=lib.sh
 source "$ROOT_DIR/scripts/lib.sh"
 
-CAELESTIA_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/caelestia"
 HYPR_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/hypr"
-
-install_user_overrides() {
-  local src="$ROOT_DIR/config/caelestia"
-
-  [[ -d "$src" ]] || return 0
-  mkdir -p "$CAELESTIA_CONFIG_DIR"
-
-  local f
-  for f in hypr-vars.lua hypr-user.lua; do
-    if [[ -f "$src/$f" && ! -f "$CAELESTIA_CONFIG_DIR/$f" ]]; then
-      cp "$src/$f" "$CAELESTIA_CONFIG_DIR/$f"
-      log "Installed Caelestia user overrides: $f"
-    fi
-  done
-}
 
 caelestia_installed() {
   [[ -d "$HYPR_CONFIG_DIR" ]] && compgen -G "$HYPR_CONFIG_DIR/*" >/dev/null
@@ -39,8 +23,6 @@ install_caelestia_dots() {
     run_sudo pacman -Rdd --noconfirm jack2
     run_sudo pacman -S --needed --noconfirm pipewire-jack
   fi
-
-  install_user_overrides
 
   if caelestia_installed; then
     log "Caelestia/Hyprland configs detected, syncing with caelestia update"

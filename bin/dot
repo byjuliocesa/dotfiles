@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DOTFILES="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+
+# shellcheck source=../scripts/lib.sh
+source "$DOTFILES/scripts/lib.sh"
+
+usage() {
+  cat <<USAGE
+Usage: dot <command>
+
+  sync           pull the repo and relink every config
+  save "msg"     commit everything and push
+  edit <name>    open the config whose path matches <name>
+  doctor [links] report broken links and missing packages
+  secret ...     init | add <file> | restore
+USAGE
+}
+
+manifests() {
+  printf '%s\n' "$DOTFILES/links.txt"
+  [[ -d "$HOME/.codex" ]] && printf '%s\n' "$DOTFILES/ai/links.txt"
+  return 0
+}
+
+cmd_sync() {
+  git -C "$DOTFILES" pull --rebase --autostash
+  local manifest
+  while read -r manifest; do
+    "$DOTFILES/scripts/links.sh" "$manifest"
+  done < <(manifests)
+}
+
+cmd_save() {
+  [[ $# -gt 0 ]] || die 'Usage: dot save "message"'
+  git -C "$DOTFILES" add -A
+  git -C "$DOTFILES" commit -m "$*"
+  git -C "$DOTFILES" push
+}
+
+cmd_edit() {
+  [[ $# -eq 1 ]] || die "Usage: dot edit <name>"
+
+  local -a matches
+  mapfile -t matches < <(grep -Ev '^\s*(#|$)' "$DOTFILES/links.txt" | awk '{print $1}' | grep -i -- "$1" || true)
+
+  local pick
+  case ${#matches[@]} in
+    0) die "No config matches '$1'" ;;
+    1) pick="${matches[0]}" ;;
+    *)
+      command_exists fzf || die "Several matches: ${matches[*]}"
+      pick="$(printf '%s\n' "${matches[@]}" | fzf --prompt 'dot edit> ')" || exit 0
+      ;;
+  esac
+
+  "${EDITOR:-nvim}" "$DOTFILES/$pick"
+}
+
+DOCTOR_ISSUES=0
+
+check_link() {
+  local src="$1" dst="$2" short="${2/#"$HOME"/\~}"
+
+  if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+    [[ -e "$dst" ]] && return 0
+    warn "broken: $short points to a missing file"
+  elif [[ -L "$dst" ]]; then
+    warn "foreign: $short points to $(readlink "$dst")"
+  elif [[ -e "$dst" ]]; then
+    warn "copy: $short is a real file, not a link (run: dot sync)"
+  else
+    warn "missing: $short (run: dot sync)"
+  fi
+  DOCTOR_ISSUES=$((DOCTOR_ISSUES + 1))
+}
+
+check_packages() {
+  command_exists pacman || return 0
+
+  local package
+  while read -r package; do
+    pacman -Q "$package" >/dev/null 2>&1 && continue
+    warn "package not installed: $package"
+    DOCTOR_ISSUES=$((DOCTOR_ISSUES + 1))
+  done < <(grep -hEv '^\s*(#|$)' "$DOTFILES/packages/arch.txt" "$DOTFILES/packages/aur.txt")
+}
+
+cmd_doctor() {
+  local manifest
+  while read -r manifest; do
+    each_link "$manifest" check_link
+  done < <(manifests)
+
+  [[ "${1:-}" == "links" ]] || check_packages
+
+  if ((DOCTOR_ISSUES == 0)); then
+    log "Everything in place"
+  else
+    die "$DOCTOR_ISSUES issue(s) found"
+  fi
+}
+
+case "${1:-}" in
+  sync) cmd_sync ;;
+  save) shift; cmd_save "$@" ;;
+  edit) shift; cmd_edit "$@" ;;
+  doctor) shift; cmd_doctor "$@" ;;
+  secret) shift; "$DOTFILES/scripts/secrets.sh" "$@" ;;
+  -h | --help | help | "") usage ;;
+  *) usage; exit 1 ;;
+esac

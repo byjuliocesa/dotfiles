@@ -42,3 +42,35 @@ detect_distro_family() {
 repo_root() {
   cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd
 }
+
+# Liga dst ao arquivo do repo. Um arquivo real em dst vira backup, para não perder edição local.
+link_path() {
+  local src="$1" dst="$2"
+
+  [[ -e "$src" ]] || return 0
+  [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]] && return 0
+
+  mkdir -p "$(dirname "$dst")"
+  if [[ -L "$dst" ]]; then
+    rm "$dst"
+  elif [[ -e "$dst" ]]; then
+    local backup
+    backup="$dst.bak.$(date +%Y%m%d%H%M%S)"
+    mv "$dst" "$backup"
+    log "Backed up $dst to $backup"
+  fi
+
+  ln -s "$src" "$dst"
+  log "Linked $dst"
+}
+
+# Chama "$2 <origem> <destino>" para cada linha de um manifesto como links.txt.
+each_link() {
+  local manifest="$1" fn="$2" root src dst
+  root="$(repo_root)"
+
+  while read -r src dst; do
+    [[ -z "$src" || "$src" == \#* ]] && continue
+    "$fn" "$root/$src" "${dst/#\~/$HOME}"
+  done <"$manifest"
+}

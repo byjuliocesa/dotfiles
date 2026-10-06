@@ -46,3 +46,6 @@ if hl.plugin.dynamic_cursors then
         },
     }}})
 end
+
+-- Layout gerado pelo nwg-displays
+pcall(require, "monitors")
