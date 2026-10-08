@@ -52,6 +52,15 @@ O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
 - Pacotes base: `packages/arch.txt` e `packages/aur.txt`
 - Overrides pessoais: `config/caelestia/hypr-vars.lua`, `hypr-user.lua` e `shell.json`
 - Cores: o Caelestia gera a paleta do wallpaper. O nvim usa o tema oficial dele (`config/nvim/colors/caelestia.lua`), que troca de cor na hora. O tmux usa `config/caelestia/templates/tmux.conf` e recarrega pelo `postHook` em `cli.json`. Starship, lazygit e yazi usam as cores do terminal, que o Caelestia já pinta.
+- Ao iniciar o Hyprland, abre o foot já dentro do tmux.
+
+## tmux
+
+As sessões sobrevivem a reboot e crash. O `tmux-continuum` salva tudo a cada 5 minutos, e o `tmux-resurrect` restaura quando o tmux sobe. Os saves ficam em `~/.local/share/tmux/resurrect/`.
+
+- Salvar agora: `prefix + Ctrl-s`. Restaurar à mão: `prefix + Ctrl-r`.
+- Programas que voltam rodando: só os da lista padrão do resurrect (`vim`, `nvim`, `man`, `less`, `top`, `htop` e outros). Os demais voltam como shell na pasta certa.
+
 - O `starship.toml` é do Caelestia: o `caelestia update` sobrescreve, por isso ele não fica no repo.
 - Layout de monitores fica fora do repo, porque muda por máquina. `hypr-user.lua` só carrega se existir.
 - Após instalar, escolha a sessão **Hyprland** no gerenciador de login (plasmalogin/SDDM)

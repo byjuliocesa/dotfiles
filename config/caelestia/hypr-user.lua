@@ -23,6 +23,8 @@ hl.config({
 
 -- Serviços ao iniciar o Hyprland
 hl.on("hyprland.start", function()
+    -- Terminal com tmux; ao subir, o tmux restaura as sessões salvas.
+    hl.exec_cmd("foot -e sh -c 'tmux attach-session 2>/dev/null || exec tmux'")
 end)
 
 -- Plugin dynamic-cursors (build manual em ~/.local/src/hypr-dynamic-cursors)

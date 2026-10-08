@@ -28,6 +28,7 @@ end
 
 u.must({ root .. "/scripts/git.sh" })
 step("shell")
+step("tmux")
 step("lazyvim")
 step("assets")
 step("systemd")
