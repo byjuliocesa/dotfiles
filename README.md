@@ -43,6 +43,7 @@ Para versionar uma config nova: mova o arquivo para `config/`, adicione uma linh
 - `ai/`: pacotes, regras e skills de IA, com o próprio `links.txt`. Só instala com `--ai`.
 - `assets/`: wallpapers e fontes.
 - `lua/dotfiles/`: o bootstrap e o `dot`, em Lua. Cada passo do install é um arquivo em `steps/`. Rodam com `nvim -l`, sem carregar plugins.
+- `scripts/`: o que ainda é Bash (`git.sh`, `github-repo.sh`).
 - `ci/` e `.github/workflows/`: a cada push, roda `shellcheck` no Bash que sobrou e, num container Arch, confere pacotes, sintaxe de Lua e fish e monta os links num HOME limpo.
 
 ## Hyprland + Caelestia
@@ -53,6 +54,7 @@ O bootstrap instala Hyprland e os dots Caelestia via `caelestia-cli`.
 - Overrides pessoais: `config/caelestia/hypr-vars.lua`, `hypr-user.lua` e `shell.json`
 - Cores: o Caelestia gera a paleta do wallpaper. O nvim usa o tema oficial dele (`config/nvim/colors/caelestia.lua`), que troca de cor na hora. O tmux usa `config/caelestia/templates/tmux.conf` e recarrega pelo `postHook` em `cli.json`. Starship, lazygit e yazi usam as cores do terminal, que o Caelestia já pinta.
 - Ao iniciar o Hyprland, abre o foot já dentro do tmux.
+- O que é só desta máquina (serviços, acesso remoto) vai em `~/.config/caelestia/hypr-local.lua`, fora do repo. Ele devolve `{ on_start = function() ... end }`.
 
 ## tmux
 

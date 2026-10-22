@@ -21,8 +21,14 @@ hl.config({
     },
 })
 
--- Serviços ao iniciar o Hyprland
+-- Serviços desta máquina que não vão para o repo: ~/.config/caelestia/hypr-local.lua,
+-- que devolve { on_start = function() ... end }.
+local has_local, machine = pcall(require, "hypr-local")
+
 hl.on("hyprland.start", function()
+    if has_local and type(machine) == "table" and machine.on_start then
+        machine.on_start()
+    end
     -- Terminal com tmux; ao subir, o tmux restaura as sessões salvas.
     hl.exec_cmd("foot -e sh -c 'tmux attach-session 2>/dev/null || exec tmux'")
 end)

@@ -4,4 +4,3 @@ visual-studio-code-bin
 
 # Caelestia desktop
 caelestia-cli
-
