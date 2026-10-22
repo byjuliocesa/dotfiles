@@ -11,6 +11,7 @@ Usage: dot <command>
   pkg add <pkg>     install a package and record it in packages/
   pkg drift         list installed packages missing from packages/
   pkg ignore <pkg>  stop reporting a package as drift
+  pkg ignore --local <pkg>  same, but only on this machine (not in the repo)
   secret ...        init | add <file> | restore
 ]]
 
@@ -75,10 +76,17 @@ local function edit(name)
   os.execute(editor .. " " .. vim.fn.shellescape(u.root .. "/" .. pick))
 end
 
+-- Pacotes só desta máquina, que não devem aparecer no repo público.
+local LOCAL_IGNORE = u.config_home .. "/dotfiles/ignore.txt"
+
 local function listed_packages()
   local set = {}
+  local lists = { LOCAL_IGNORE }
   for _, list in ipairs({ "arch", "aur", "ignore" }) do
-    for _, package in ipairs(u.read_list(("%s/packages/%s.txt"):format(u.root, list))) do
+    table.insert(lists, ("%s/packages/%s.txt"):format(u.root, list))
+  end
+  for _, list in ipairs(lists) do
+    for _, package in ipairs(u.read_list(list)) do
       set[package] = true
     end
   end
@@ -143,8 +151,13 @@ local function pkg(cmd, ...)
     if #rest == 0 then
       u.die("Usage: dot pkg ignore <package>...")
     end
+    local target = u.root .. "/packages/ignore.txt"
+    if rest[1] == "--local" then
+      table.remove(rest, 1)
+      target = LOCAL_IGNORE
+    end
     for _, package in ipairs(rest) do
-      u.append_line(u.root .. "/packages/ignore.txt", package)
+      u.append_line(target, package)
     end
   else
     u.die("Usage: dot pkg add | drift | ignore")

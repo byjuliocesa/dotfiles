@@ -25,6 +25,7 @@ O script atual foca em sistemas compatíveis com Arch Linux, como CachyOS.
 | `dot pkg add <pacote>` | instala (pacman ou AUR) e já anota em `packages/` |
 | `dot pkg drift` | mostra o que está instalado mas não está em `packages/` |
 | `dot pkg ignore <pacote>` | para de cobrar um pacote (vai para `packages/ignore.txt`) |
+| `dot pkg ignore --local <pacote>` | o mesmo, mas só nesta máquina (`~/.config/dotfiles/ignore.txt`, fora do repo) |
 | `dot secret add <arquivo>` | guarda um arquivo cifrado no repo (veja `secrets/README.md`) |
 
 Um timer do systemd roda `dot doctor` uma vez por dia e manda uma notificação se algo saiu do lugar.
