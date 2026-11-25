@@ -8,8 +8,8 @@ local function install_opencode()
   if not u.has("curl") then
     u.die("curl is required to install OpenCode")
   end
-  u.log("Installing OpenCode via official install script")
-  u.must({ "sh", "-c", "curl -fsSL https://opencode.ai/install | bash" })
+  u.log("Installing OpenCode 2 via official install script")
+  u.must({ "sh", "-c", "curl -fsSL https://opencode.ai/v2/install | bash" })
 end
 
 return {
