@@ -1,7 +1,7 @@
 -- Wallpapers vêm de https://wallhaven.cc (os "wallhaven-xxxxxx.jpg").
 -- Fontes vêm de https://www.programmingfonts.org (preview de fontes de código;
 -- cada uma linka o download oficial). CommitMono vem de https://commitmono.com.
--- Anthropic Sans/Serif/Mono e o cursor Claude: origem em assets/fonts/anthropic/SOURCE.md e assets/cursors/SOURCE.md.
+-- Anthropic Sans/Serif/Mono e o cursor Claude: origem em assets/fonts/anthropic/SOURCE.md e assets/cursors/SOURCE-*.md.
 local u = require("dotfiles.util")
 
 local function files(dir)

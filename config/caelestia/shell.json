@@ -4,21 +4,21 @@
       "enabled": false
     },
     "font": {
-      "clock": "AnthropicSans",
+      "body": {
+        "family": "AnthropicSans"
+      },
+      "headline": {
+        "family": "AnthropicSerif"
+      },
       "label": {
         "family": "AnthropicSans"
       },
       "title": {
         "family": "AnthropicSans"
       },
+      "clock": "AnthropicSans",
       "mono": {
         "family": "AnthropicMono"
-      },
-      "headline": {
-        "family": "AnthropicSerif"
-      },
-      "body": {
-        "family": "AnthropicSans"
       }
     }
   },

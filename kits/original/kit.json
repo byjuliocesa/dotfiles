@@ -1,0 +1,18 @@
+{
+  "cursor": {
+    "size": 24,
+    "theme": "miku-cursor-linux"
+  },
+  "fonts": {
+    "mono": "Noto Sans Mono",
+    "mono_ui": "Hack",
+    "sans": "Noto Sans",
+    "serif": "Noto Serif",
+    "size": 10,
+    "terminal": "CommitMono:size=12, JetBrains Mono Nerd Font:size=12"
+  },
+  "gtk_theme": "adw-gtk3-dark",
+  "scheme": "scheme.json",
+  "shell_fonts": {},
+  "wallpaper": "wallpaper.webp"
+}

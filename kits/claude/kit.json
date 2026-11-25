@@ -37,6 +37,7 @@
     "size": 10,
     "terminal": "AnthropicMono:size=12, JetBrains Mono Nerd Font:size=12"
   },
+  "gtk_theme": "adw-gtk3",
   "icons": "Papirus-Light",
   "scheme": "scheme.json",
   "shell_fonts": {

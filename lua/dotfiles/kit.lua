@@ -93,9 +93,12 @@ local function apply(name)
   local kit = read_json(dir .. "/kit.json")
 
   -- Ícones antes das cores: o Caelestia reaplica o tema de ícones junto com as cores.
+  -- Sem "icons", o Caelestia escolhe Papirus-Dark ou Papirus-Light pelo modo das cores.
   if kit.icons then
     jq_edit(CLI_JSON, ".theme.iconTheme = $v", { v = kit.icons })
     gsettings("icon-theme", kit.icons)
+  else
+    jq_edit(CLI_JSON, "del(.theme.iconTheme)")
   end
 
   -- O wallpaper vem antes das cores, porque trocar o wallpaper recalcula o esquema.
@@ -122,14 +125,22 @@ local function apply(name)
     write_fontconfig(f)
     gsettings("font-name", ("%s %d"):format(f.sans, f.size or 10))
     gsettings("document-font-name", ("%s %d"):format(f.serif, (f.size or 10) + 1))
-    gsettings("monospace-font-name", ("%s %d"):format(f.mono, f.size or 10))
+    gsettings("monospace-font-name", ("%s %d"):format(f.mono_ui or f.mono, f.size or 10))
     if f.terminal then
       replace_line(FOOT_INI, "\nfont=[^\n]*", "\nfont=" .. f.terminal)
     end
   end
 
-  if kit.shell_fonts then
+  -- "shell_fonts": {} volta às fontes padrão do Caelestia.
+  if kit.shell_fonts and next(kit.shell_fonts) == nil then
+    jq_edit(SHELL_JSON, "del(.appearance.font)")
+  elseif kit.shell_fonts then
     jq_edit(SHELL_JSON, ".appearance.font = $v", { v = kit.shell_fonts })
+  end
+
+  -- O Caelestia sempre grava adw-gtk3-dark; o kit corrige depois das cores.
+  if kit.gtk_theme then
+    gsettings("gtk-theme", kit.gtk_theme)
   end
 
   if kit.cursor then
@@ -179,6 +190,12 @@ local function save(name)
     terminal = u.read(FOOT_INI):match("\nfont=([^\n]*)"),
   }
   kit.shell_fonts = (read_json(SHELL_JSON).appearance or {}).font
+
+  kit.gtk_theme = gsettings_get("gtk-theme")
+  local mono_ui = gsettings_get("monospace-font-name"):match("^(.-)%s+%d+$")
+  if mono_ui and mono_ui ~= kit.fonts.mono then
+    kit.fonts.mono_ui = mono_ui
+  end
 
   kit.cursor = { theme = gsettings_get("cursor-theme"), size = tonumber(gsettings_get("cursor-size")) or 24 }
   kit.icons = gsettings_get("icon-theme")
