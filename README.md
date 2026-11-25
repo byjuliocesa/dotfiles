@@ -31,7 +31,7 @@ O script atual foca em sistemas compatíveis com Arch Linux, como CachyOS.
 | `dot kit <nome>` | aplica o kit de `kits/<nome>` |
 | `dot kit list` | lista os kits e mostra o padrão |
 | `dot kit save <nome>` | guarda o visual atual como kit |
-| `dot kit default <nome>` | escolhe o kit que `dot kit` aplica |
+| `dot kit set-default <nome>` | escolhe o kit que `dot kit` aplica |
 
 Um timer do systemd roda `dot doctor` uma vez por dia e manda uma notificação se algo saiu do lugar.
 

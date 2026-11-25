@@ -17,7 +17,7 @@ Usage: dot <command>
   kit <name>        apply a kit from kits/<name>
   kit list          list kits and show the default
   kit save <name>   save the current look as a kit
-  kit default <name>  set the kit that plain "dot kit" applies
+  kit set-default <name>  set the kit that plain "dot kit" applies
 ]]
 
 local function manifests()

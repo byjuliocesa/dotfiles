@@ -131,6 +131,13 @@ local function apply(name)
     end
   end
 
+  -- Logo da barra, do painel de cima e da tela de bloqueio. Sem "logo", volta ao do Caelestia.
+  if kit.logo then
+    jq_edit(SHELL_JSON, ".general.logo = $v", { v = u.short(dir .. "/" .. kit.logo) })
+  else
+    jq_edit(SHELL_JSON, "del(.general.logo)")
+  end
+
   -- "shell_fonts": {} volta às fontes padrão do Caelestia.
   if kit.shell_fonts and next(kit.shell_fonts) == nil then
     jq_edit(SHELL_JSON, "del(.appearance.font)")
@@ -162,9 +169,9 @@ local function save(name)
   local dir = KITS .. "/" .. name
   u.mkdirp(dir)
 
-  -- apps_colours não dá para ler do sistema; mantém a do kit, se já existir.
+  -- apps_colours e logo não dá para ler do sistema; mantém os do kit, se já existir.
   local previous = u.exists(dir .. "/kit.json") and read_json(dir .. "/kit.json") or {}
-  local kit = { apps_colours = previous.apps_colours }
+  local kit = { apps_colours = previous.apps_colours, logo = previous.logo }
 
   local _, wall = u.capture({ "caelestia", "wallpaper" })
   wall = vim.trim(wall or "")
@@ -215,13 +222,13 @@ local M = {}
 
 function M.run(cmd, arg)
   if cmd == nil then
-    local name = default_name() or u.die("No default kit. Set one with: dot kit default <name>")
+    local name = default_name() or u.die("No default kit. Set one with: dot kit set-default <name>")
     apply(name)
   elseif cmd == "list" then
     list()
   elseif cmd == "save" then
     save(arg)
-  elseif cmd == "default" then
+  elseif cmd == "set-default" then
     if not arg then
       io.stdout:write((default_name() or "none") .. "\n")
     else

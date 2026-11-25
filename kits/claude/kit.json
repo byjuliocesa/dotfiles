@@ -39,6 +39,7 @@
   },
   "gtk_theme": "adw-gtk3",
   "icons": "Papirus-Light",
+  "logo": "logo.svg",
   "scheme": "scheme.json",
   "shell_fonts": {
     "body": {

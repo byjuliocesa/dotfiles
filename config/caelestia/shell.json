@@ -32,7 +32,8 @@
       "inhibitWhenAudio": true,
       "lockBeforeSleep": true,
       "timeouts": []
-    }
+    },
+    "logo": "~/dotfiles/kits/claude/logo.svg"
   },
   "launcher": {
     "favouriteApps": [],
