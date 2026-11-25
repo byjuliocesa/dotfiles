@@ -1,0 +1,61 @@
+{
+  "apps_colours": {
+    "inverseOnSurface": "faf9f5",
+    "inversePrimary": "f5c9b8",
+    "inverseSurface": "2b2420",
+    "onPrimary": "ffffff",
+    "onPrimaryContainer": "5a2414",
+    "onSecondary": "ffffff",
+    "onSecondaryContainer": "5a2414",
+    "onSurface": "2b2420",
+    "onSurfaceVariant": "5c504a",
+    "onTertiary": "ffffff",
+    "onTertiaryContainer": "5a2414",
+    "outline": "b0a39c",
+    "outlineVariant": "e3d8cf",
+    "primary": "d97757",
+    "primaryContainer": "f5c9b8",
+    "secondary": "c15f3c",
+    "secondaryContainer": "f5c9b8",
+    "surface": "faf9f5",
+    "surfaceContainer": "f3ede6",
+    "surfaceContainerHigh": "ece3da",
+    "surfaceContainerHighest": "e6dbd1",
+    "surfaceContainerLow": "f6f2ec",
+    "surfaceContainerLowest": "ffffff",
+    "tertiary": "d97757",
+    "tertiaryContainer": "f5c9b8"
+  },
+  "cursor": {
+    "size": 24,
+    "theme": "claude-cursors"
+  },
+  "fonts": {
+    "mono": "AnthropicMono",
+    "sans": "AnthropicSans",
+    "serif": "AnthropicSerif",
+    "size": 10,
+    "terminal": "AnthropicMono:size=12, JetBrains Mono Nerd Font:size=12"
+  },
+  "icons": "Papirus-Light",
+  "scheme": "scheme.json",
+  "shell_fonts": {
+    "body": {
+      "family": "AnthropicSans"
+    },
+    "clock": "AnthropicSans",
+    "headline": {
+      "family": "AnthropicSerif"
+    },
+    "label": {
+      "family": "AnthropicSans"
+    },
+    "mono": {
+      "family": "AnthropicMono"
+    },
+    "title": {
+      "family": "AnthropicSans"
+    }
+  },
+  "wallpaper": "wallpaper.png"
+}

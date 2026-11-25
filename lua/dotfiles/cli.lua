@@ -13,6 +13,11 @@ Usage: dot <command>
   pkg ignore <pkg>  stop reporting a package as drift
   pkg ignore --local <pkg>  same, but only on this machine (not in the repo)
   secret ...        init | add <file> | restore
+  kit               apply the default visual kit (wallpaper, colors, fonts, cursor, icons)
+  kit <name>        apply a kit from kits/<name>
+  kit list          list kits and show the default
+  kit save <name>   save the current look as a kit
+  kit default <name>  set the kit that plain "dot kit" applies
 ]]
 
 local function manifests()
@@ -237,6 +242,8 @@ function M.main(argv)
     doctor(rest[1])
   elseif cmd == "pkg" then
     pkg(unpack(rest))
+  elseif cmd == "kit" then
+    require("dotfiles.kit").run(rest[1], rest[2])
   elseif cmd == "secret" then
     require("dotfiles.steps.secrets").run(unpack(rest))
   elseif cmd == nil or cmd == "help" or cmd == "-h" or cmd == "--help" then

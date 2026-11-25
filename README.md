@@ -27,6 +27,11 @@ O script atual foca em sistemas compatíveis com Arch Linux, como CachyOS.
 | `dot pkg ignore <pacote>` | para de cobrar um pacote (vai para `packages/ignore.txt`) |
 | `dot pkg ignore --local <pacote>` | o mesmo, mas só nesta máquina (`~/.config/dotfiles/ignore.txt`, fora do repo) |
 | `dot secret add <arquivo>` | guarda um arquivo cifrado no repo (veja `secrets/README.md`) |
+| `dot kit` | aplica o kit visual padrão: wallpaper, cores, fontes, cursor e ícones |
+| `dot kit <nome>` | aplica o kit de `kits/<nome>` |
+| `dot kit list` | lista os kits e mostra o padrão |
+| `dot kit save <nome>` | guarda o visual atual como kit |
+| `dot kit default <nome>` | escolhe o kit que `dot kit` aplica |
 
 Um timer do systemd roda `dot doctor` uma vez por dia e manda uma notificação se algo saiu do lugar.
 

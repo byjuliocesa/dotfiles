@@ -4,22 +4,22 @@
       "enabled": false
     },
     "font": {
-      "headline": {
-        "family": "AnthropicSerif"
+      "clock": "AnthropicSans",
+      "label": {
+        "family": "AnthropicSans"
       },
       "title": {
-        "family": "AnthropicSans"
-      },
-      "body": {
-        "family": "AnthropicSans"
-      },
-      "label": {
         "family": "AnthropicSans"
       },
       "mono": {
         "family": "AnthropicMono"
       },
-      "clock": "AnthropicSans"
+      "headline": {
+        "family": "AnthropicSerif"
+      },
+      "body": {
+        "family": "AnthropicSans"
+      }
     }
   },
   "bar": {

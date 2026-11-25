@@ -1,5 +1,6 @@
 {
   "theme": {
-    "postHook": "tmux source-file -q ~/.local/state/caelestia/theme/tmux.conf 2>/dev/null || true"
+    "postHook": "tmux source-file -q ~/.local/state/caelestia/theme/tmux.conf 2>/dev/null || true",
+    "iconTheme": "Papirus-Light"
   }
 }
