@@ -5,5 +5,5 @@ return {
   terminal = "foot",
   editor = "code",
   fileManager = "thunar",
-  cursorTheme = "miku-cursor-linux",
+  cursorTheme = "claude-cursors",
 }

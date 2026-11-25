@@ -21,6 +21,20 @@ hl.config({
     },
 })
 
+-- Teclado sem fio (layout físico americano): inglês internacional.
+-- Acentos por tecla morta: ' + c = ç, ~ + a = ã; ' + espaço sai o próprio '.
+-- O receptor expõe as teclas por mais de um dispositivo; todos precisam do layout.
+for _, name in ipairs({
+    "compx-2.4g-wireless-receiver",
+    "compx-2.4g-wireless-receiver-keyboard",
+}) do
+    hl.device({
+        name       = name,
+        kb_layout  = "us",
+        kb_variant = "intl",
+    })
+end
+
 -- Serviços desta máquina que não vão para o repo: ~/.config/caelestia/hypr-local.lua,
 -- que devolve { on_start = function() ... end }.
 local has_local, machine = pcall(require, "hypr-local")

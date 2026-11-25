@@ -1,33 +1,48 @@
 {
-    "appearance": {
-        "transparency": {
-            "enabled": false
-        }
+  "appearance": {
+    "transparency": {
+      "enabled": false
     },
-    "bar": {
-        "activeWindow": {
-            "inverted": false
-        }
-    },
-    "general": {
-        "idle": {
-            "inhibitWhenAudio": true,
-            "lockBeforeSleep": true,
-            "timeouts": [
-            ]
-        }
-    },
-    "launcher": {
-        "favouriteApps": [
-        ],
-        "hiddenApps": [
-        ],
-        "useFuzzy": {
-            "wallpapers": false
-        }
-    },
-    "lock": {
-        "enableFprint": true,
-        "maxFprintTries": 5
+    "font": {
+      "headline": {
+        "family": "AnthropicSerif"
+      },
+      "title": {
+        "family": "AnthropicSans"
+      },
+      "body": {
+        "family": "AnthropicSans"
+      },
+      "label": {
+        "family": "AnthropicSans"
+      },
+      "mono": {
+        "family": "AnthropicMono"
+      },
+      "clock": "AnthropicSans"
     }
+  },
+  "bar": {
+    "activeWindow": {
+      "inverted": false
+    }
+  },
+  "general": {
+    "idle": {
+      "inhibitWhenAudio": true,
+      "lockBeforeSleep": true,
+      "timeouts": []
+    }
+  },
+  "launcher": {
+    "favouriteApps": [],
+    "hiddenApps": [],
+    "useFuzzy": {
+      "wallpapers": false
+    }
+  },
+  "lock": {
+    "enableFprint": true,
+    "maxFprintTries": 5
+  }
 }

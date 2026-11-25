@@ -1,6 +1,7 @@
 -- Wallpapers vêm de https://wallhaven.cc (os "wallhaven-xxxxxx.jpg").
 -- Fontes vêm de https://www.programmingfonts.org (preview de fontes de código;
 -- cada uma linka o download oficial). CommitMono vem de https://commitmono.com.
+-- Anthropic Sans/Serif/Mono e o cursor Claude: origem em assets/fonts/anthropic/SOURCE.md e assets/cursors/SOURCE.md.
 local u = require("dotfiles.util")
 
 local function files(dir)
@@ -56,9 +57,30 @@ local function install_fonts()
   end
 end
 
+-- Cada assets/cursors/<tema>.tar.xz traz a pasta <tema>/ na raiz.
+local function install_cursors()
+  local archives = vim.tbl_filter(function(path)
+    return path:match("%.tar%.xz$")
+  end, files(u.root .. "/assets/cursors"))
+
+  local icons = u.data_home .. "/icons"
+  for _, archive in ipairs(archives) do
+    local theme = vim.fs.basename(archive):gsub("%.tar%.xz$", "")
+    local target = icons .. "/" .. theme
+    if u.exists(target .. "/index.theme") then
+      u.log("Cursor already installed: " .. u.short(target))
+    else
+      vim.fn.mkdir(icons, "p")
+      u.check({ "tar", "-xJf", archive, "-C", icons })
+      u.log("Installed cursor: " .. u.short(target))
+    end
+  end
+end
+
 return {
   run = function()
     install_wallpapers()
     install_fonts()
+    install_cursors()
   end,
 }
