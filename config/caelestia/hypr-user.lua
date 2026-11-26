@@ -44,7 +44,8 @@ hl.on("hyprland.start", function()
         machine.on_start()
     end
     -- Terminal com tmux; ao subir, o tmux restaura as sessões salvas.
-    hl.exec_cmd("foot -e sh -c 'tmux attach-session 2>/dev/null || exec tmux'")
+    -- Sem o fish no meio, ninguém manda as cores do tema ao foot e o fundo fica o escuro padrão.
+    hl.exec_cmd("foot -e sh -c 'cat ~/.local/state/caelestia/sequences.txt 2>/dev/null; tmux attach-session 2>/dev/null || exec tmux'")
 end)
 
 -- Plugin dynamic-cursors (build manual em ~/.local/src/hypr-dynamic-cursors)
