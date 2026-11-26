@@ -35,6 +35,10 @@ for _, name in ipairs({
     })
 end
 
+-- SUPER + Ctrl direito abre o menu de contexto no elemento focado (Shift+F10).
+-- Espera soltar as teclas: com SUPER ainda pressionado, o app receberia SUPER + Shift + F10.
+hl.bind("SUPER + Control_R", hl.dsp.exec_cmd("sleep 0.25 && ydotool key 42:1 68:1 68:0 42:0"), { release = true })
+
 -- Serviços desta máquina que não vão para o repo: ~/.config/caelestia/hypr-local.lua,
 -- que devolve { on_start = function() ... end }.
 local has_local, machine = pcall(require, "hypr-local")
