@@ -2,7 +2,7 @@ return {
   -- SUPER+SHIFT+L apenas bloqueia; nada de suspender
   sleepGestureCmd = "hyprctl dispatch global caelestia:lock",
   browser = "zen-browser",
-  terminal = "foot",
+  terminal = "foot --working-directory=" .. os.getenv("HOME"),
   editor = "code",
   fileManager = "thunar",
   cursorTheme = "claude-cursors",
