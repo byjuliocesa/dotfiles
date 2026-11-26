@@ -9,5 +9,9 @@ return {
     u.must({ "systemctl", "--user", "daemon-reload" })
     u.must({ "systemctl", "--user", "enable", "--now", "dot-doctor.timer" })
     u.log("Enabled daily dot doctor check")
+    -- O ydotool faz as teclas e cliques simulados dos atalhos do Hyprland.
+    if vim.fn.executable("ydotoold") == 1 then
+      u.must({ "systemctl", "--user", "enable", "--now", "ydotool.service" })
+    end
   end,
 }
